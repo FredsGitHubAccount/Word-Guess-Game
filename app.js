@@ -56,10 +56,10 @@ document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${
 //    4. Replace underscores with letter if the correct letter is guessed & incorrect letters subract from guesses remaining and are shown in incorrect guesses.
 
 function letterChecker (guess) {
-	
+	// Why did I have to make letterInWord False and have it toggled?  Why would my wrong guesses duplicate several times.  
 	var letterInWord = false;
 
-	for (var i = 0; i < totalBlanks; i++) {
+	for (let i = 0; i < totalBlanks; i++) {
 		if (computerGuess[i] === guess) {
             letterInWord = true;
             
@@ -68,10 +68,10 @@ function letterChecker (guess) {
 
 	if (letterInWord) {
 	
-		for (var j = 0; j < totalBlanks; j++) {
+		for (let i = 0; i < totalBlanks; i++) {
 		
-			if (computerGuess[j] === guess) {
-				displayBlanks[j] = guess;
+			if (computerGuess[i] === guess) {
+				displayBlanks[i] = guess;
             }
             document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
 		}
@@ -107,6 +107,7 @@ function roundComplete() {
         document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : `;
         newGame()
 
+        // why did I have to put fresh start within the function round complete?
     }     if (wins == 5) {
 
         freshStart();
@@ -134,7 +135,7 @@ function freshStart(){
 
 }
 
-// Calling Functions
+// Calling Functions  ???? Why do I have to call it down here when it's inside a function.  
     newGame();
     document.onkeyup = function(event) {
     userGuess = (event.key.toLowerCase());
