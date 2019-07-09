@@ -1,7 +1,7 @@
 // // 1. Have a list of words that can be guessed & variables
 
 // list of characters
-let nintendoChars = ["mario" , "luigi", "peach", "bowser", "toad", "blooper", "goomba", "yoshi", "boo", "waluigi", "wario", "toadsworth", "rosalina", "daisy", "koopalings", "birdo" , "kamek" , "toadette", "piranha", "koopa", "wiggler", "pokey", "morton" ] 
+let nintendoChars = ["mario", "luigi", "peach", "bowser", "toad", "blooper", "goomba", "yoshi", "boo", "waluigi", "wario", "toadsworth", "rosalina", "daisy", "koopalings", "birdo", "kamek", "toadette", "piranha", "koopa", "wiggler", "pokey", "morton"]
 
 // Computer randomly picks a word from the list
 let computerGuess = "";
@@ -21,6 +21,7 @@ let displayBlanks = [];
 // Store wrong letters that don't match the letters of the word
 let wrongLetters = [];
 
+
 // Scoring
 let wins = 0;
 let losses = 0;
@@ -30,60 +31,68 @@ let guessesRemain = 10;
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
 
-computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)];
-console.log(computerGuess);
 
-computerGuessLetters = computerGuess.split(""); // computerGuess split into individual letters inside an array
-console.log(computerGuessLetters)
+    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)];
+    console.log(computerGuess);
 
-totalBlanks = computerGuess.length; // Total amount of underscores that will be pushed into displayBlanks
-console.log(totalBlanks);
+    computerGuessLetters = computerGuess.split(""); // computerGuess split into individual letters inside an array
+    console.log(computerGuessLetters)
 
-//    3. Generate underscores based on the length of the word
-displayBlanks = [];
-wrongLetters = [];
-guessesRemain = 10;
+    totalBlanks = computerGuess.length; // Total amount of underscores that will be pushed into displayBlanks
+    console.log(totalBlanks);
 
-for (let i = 0 ; i < totalBlanks; i++) {
-    (displayBlanks.push("_"));
-   
-}
-document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
-document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
+    //    3. Generate underscores based on the length of the word
+    displayBlanks = [];
+    wrongLetters = [];
+    guessesRemain = 10;
+
+    for (let i = 0; i < totalBlanks; i++) {
+        (displayBlanks.push("_"));
+
+    }
+    document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
+    document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
 
 }
 
 //    4. Replace underscores with letter if the correct letter is guessed & incorrect letters subract from guesses remaining and are shown in incorrect guesses.
 
-function letterChecker (guess) {
-	// Why did I have to make letterInWord False and have it toggled?  Why would my wrong guesses duplicate several times.  
-	var letterInWord = false;
+function letterChecker(guess) {
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
 
-	for (let i = 0; i < totalBlanks; i++) {
-		if (computerGuess[i] === guess) {
+        var letterInWord = false;
+
+
+    for (let i = 0; i < totalBlanks; i++) {
+        if (computerGuess[i] === guess) {
             letterInWord = true;
-            
-		}
-	}
 
-	if (letterInWord) {
-	
-		for (let i = 0; i < totalBlanks; i++) {
-		
-			if (computerGuess[i] === guess) {
-				displayBlanks[i] = guess;
+        }
+    }
+
+ 
+    if (letterInWord) {
+
+        for (let i = 0; i < totalBlanks; i++) {
+
+            if (computerGuess[i] === guess) {
+                displayBlanks[i] = guess;
             }
             document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
-		}
-	}
-	else {
-		wrongLetters.push(guess);
-        guessesRemain--; 
-            
+        }
+    }
+    else {
+        wrongLetters.push(guess);
+        guessesRemain--;
+
     }
     document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
     document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
     document.getElementById("directions-text").innerHTML = 'Good Luck!';
+} else { 
+
+    alert('You must type a valid character!')
+}
 };
 
 //    5. If user guesses all letters, a win is added, & randomly select another word
@@ -95,10 +104,9 @@ function roundComplete() {
         document.getElementById(`wins-text`).innerHTML = `Wins : ${wins}`;
         document.getElementById(`wrong-guess-text`).innerHTML = `Wrong Guesses :`;
         newGame()
-    
+
     }
 
-//    6. If user runs out of guesses, a loss is added, & randomly select another word
     else if (guessesRemain === 0) {
 
         losses++;
@@ -107,8 +115,8 @@ function roundComplete() {
         document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : `;
         newGame()
 
-        // why did I have to put fresh start within the function round complete?
-    }     if (wins == 5) {
+
+    } if (wins == 5) {
 
         freshStart();
         alert(`You Are A Hangman Master! Hit Enter To Play Again!`)
@@ -121,10 +129,11 @@ function roundComplete() {
         alert(`Better Luck Next Time!`)
 
     }
-      
+
 }
 
-function freshStart(){
+function freshStart() {
+
     wins = 0;
     losses = 0;
     remainingGuesses = 10;
@@ -135,15 +144,17 @@ function freshStart(){
 
 }
 
-// Calling Functions  ???? Why do I have to call it down here when it's inside a function.  
-    newGame();
-    document.onkeyup = function(event) {
-    userGuess = (event.key.toLowerCase());
+// Calling Functions
+newGame();
+document.onkeyup = function (event) {
+
+    userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     console.log(userGuess);
-    letterChecker(userGuess);   
+    letterChecker(userGuess);
     roundComplete();
-    }
-    freshStart();
+
+}
+freshStart();
 
 // Trial
 // function letterChecker(guess) {
@@ -157,7 +168,7 @@ function freshStart(){
 //         wrongLetters.push(guess);
 //         guessesRemain--;  
 //     }
-   
+
 // }
 // document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
 // document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;

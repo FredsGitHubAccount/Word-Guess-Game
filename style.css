@@ -1,0 +1,37 @@
+body {
+    background-image: url("https://images6.alphacoders.com/912/912386.png");
+    text-align: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-size: 34px;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+
+
+}
+
+.gameholder {
+    margin: 125px auto;
+    opacity: .9;
+    background: black;
+    width: auto;
+    padding: 25px;
+    
+
+}
+
+#generate-underscore {
+    font-size: 56px;
+}
+
+#wrong-guess-text {
+    color: crimson;
+}
+
+embed {
+  opacity: .1;
+  background:white;
+  height: 50px;
+  width: 50px;
+
+}
