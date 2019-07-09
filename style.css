@@ -16,6 +16,7 @@ body {
     background: black;
     width: auto;
     padding: 25px;
+    border-radius: 25px;
     
 
 }
@@ -34,4 +35,8 @@ embed {
   height: 50px;
   width: 50px;
 
+}
+
+.gameholder:hover {
+    background: rgb(32, 32, 32);
 }

@@ -32,7 +32,7 @@ let guessesRemain = 10;
 function newGame() {
 
 
-    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)];
+    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)]; 
     console.log(computerGuess);
 
     computerGuessLetters = computerGuess.split(""); // computerGuess split into individual letters inside an array
