@@ -31,6 +31,7 @@ let guessesRemain = 10;
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
 
+    
 
     computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)]; 
     console.log(computerGuess);
