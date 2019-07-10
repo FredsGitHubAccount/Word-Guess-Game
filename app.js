@@ -31,9 +31,9 @@ let guessesRemain = 10;
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
 
+    
 
-
-    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)];
+    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)]; 
     console.log(computerGuess);
 
     computerGuessLetters = computerGuess.split(""); // computerGuess split into individual letters inside an array
@@ -64,36 +64,36 @@ function letterChecker(guess) {
         var letterInWord = false;
 
 
-        for (let i = 0; i < totalBlanks; i++) {
-            if (computerGuess[i] === guess) {
-                letterInWord = true;
-
-            }
-        }
-
-
-        if (letterInWord) {
-
-            for (let i = 0; i < totalBlanks; i++) {
-
-                if (computerGuess[i] === guess) {
-                    displayBlanks[i] = guess;
-                }
-                document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
-            }
-        }
-        else {
-            wrongLetters.push(guess);
-            guessesRemain--;
+    for (let i = 0; i < totalBlanks; i++) {
+        if (computerGuess[i] === guess) {
+            letterInWord = true;
 
         }
-        document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
-        document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
-        document.getElementById("directions-text").innerHTML = 'Good Luck!';
-    } else {
-
-        alert('You must type a valid character!')
     }
+
+ 
+    if (letterInWord) {
+
+        for (let i = 0; i < totalBlanks; i++) {
+
+            if (computerGuess[i] === guess) {
+                displayBlanks[i] = guess;
+            }
+            document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
+        }
+    }
+    else {
+        wrongLetters.push(guess);
+        guessesRemain--;
+
+    }
+    document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
+    document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
+    document.getElementById("directions-text").innerHTML = 'Good Luck!';
+} else { 
+
+    alert('You must type a valid character!')
+}
 };
 
 //    5. If user guesses all letters, a win is added, & randomly select another word
@@ -142,6 +142,7 @@ function freshStart() {
     document.getElementById("losses-text").innerHTML = `Losses : ${losses}`;
     document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
     document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
+    document.getElementById("directions-text").innerHTML = `Press Any Key To Get Started! Try To Guess 5 Words Before 5 Losses!`;
 
 }
 
@@ -152,7 +153,6 @@ document.onkeyup = function (event) {
     console.log(userGuess);
     letterChecker(userGuess);
     roundComplete();
-
 }
 freshStart();
 
