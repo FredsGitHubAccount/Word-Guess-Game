@@ -20,6 +20,8 @@ Front-End
 3. Open index.html in web browser
 
 ``` 
+
 ##Setup B
 ```
 1. Open the live link at https://fredsgithubaccount.github.io/Word-Guess-Game/
+```
