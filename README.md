@@ -13,15 +13,11 @@ Front-End
 - [ ] Javascript
 
 
-## Setup A
+## Setup 
 ```
 1. git clone https://github.com/FredsGitHubAccount/Word-Guess-Game.git
 2. cd Word-Guess-Game
 3. Open index.html in web browser
-
-``` 
-
-##Setup B
-```
+OR
 1. Open the live link at https://fredsgithubaccount.github.io/Word-Guess-Game/
 ```
