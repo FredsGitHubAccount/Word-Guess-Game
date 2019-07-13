@@ -31,9 +31,9 @@ let guessesRemain = 10;
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
 
-    
 
-    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)]; 
+
+    computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)];
     console.log(computerGuess);
 
     computerGuessLetters = computerGuess.split(""); // computerGuess split into individual letters inside an array
@@ -56,47 +56,47 @@ function newGame() {
 
 }
 
-//    4. Replace underscores with letter if the correct letter is guessed & incorrect letters subract from guesses remaining and are shown in incorrect guesses.
+//    4. Verify if keystroke is part of the alphabet.  Checks to see if letter is part of the word.  If so, replace underscore with letter.  If not, adds to wrong guesses and subtracts a guess.
 
 function letterChecker(guess) {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
 
-        var letterInWord = false;
+        let letterInWord = false;
 
-
-    for (let i = 0; i < totalBlanks; i++) {
-        if (computerGuess[i] === guess) {
-            letterInWord = true;
-
-        }
-    }
-
- 
-    if (letterInWord) {
 
         for (let i = 0; i < totalBlanks; i++) {
-
             if (computerGuess[i] === guess) {
-                displayBlanks[i] = guess;
+                letterInWord = true;
+
             }
-            document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
         }
-    }
-    else {
-        wrongLetters.push(guess);
-        guessesRemain--;
 
-    }
-    document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
-    document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
-    document.getElementById("directions-text").innerHTML = 'Good Luck!';
-} else { 
 
-    alert('You must type a valid character!')
-}
+        if (letterInWord) {
+
+            for (let i = 0; i < totalBlanks; i++) {
+
+                if (computerGuess[i] === guess) {
+                    displayBlanks[i] = guess;
+                }
+                document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
+            }
+        }
+        else {
+            wrongLetters.push(guess);
+            guessesRemain--;
+
+        }
+        document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
+        document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
+        document.getElementById("directions-text").innerHTML = 'Good Luck!';
+    } else {
+
+        alert('You must type a valid character!')
+    }
 };
 
-//    5. If user guesses all letters, a win is added, & randomly select another word
+//    5. If user guesses all letters, a win is added, & randomly select another word. If 5 wins or 5 losses occurs, prompt the user to play again.  
 function roundComplete() {
 
     if (computerGuessLetters == displayBlanks.toString()) {
@@ -155,23 +155,3 @@ document.onkeyup = function (event) {
     roundComplete();
 }
 freshStart();
-
-// Trial
-// function letterChecker(guess) {
-// for (let i = 0 ; i < totalBlanks ; i++) {
-//     if (computerGuess[i] === guess) {
-//         displayBlanks[i] = guess;
-//         console.log(displayBlanks);
-//         document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
-//     }    
-//       else {
-//         wrongLetters.push(guess);
-//         guessesRemain--;  
-//     }
-
-// }
-// document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
-// document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
-// document.getElementById("directions-text").innerHTML = 'Good Luck!';
-// }
-
