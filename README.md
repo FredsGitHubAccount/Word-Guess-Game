@@ -1,11 +1,10 @@
-# Basic Portfolio
+# Word Guess Game
 
 ## Table of Contents 
 
 ## Objective 
 
-Create a responsive 3-page portfolio with an about me, contact, and portfolio section using Bootstrap.
-
+Create a Hangman game using HTML, CSS, & Javascript using a theme of your choice.  
 
 ## Technologies
 Front-End
