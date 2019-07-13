@@ -4,7 +4,7 @@
 
 ## Objective 
 
-Create a Hangman game using HTML, CSS, & Javascript using a theme of your choice.  
+Create a Hangman game using HTML, CSS, & Javascript with a theme of your choice.  
 
 ## Technologies
 Front-End
