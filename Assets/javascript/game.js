@@ -83,10 +83,17 @@ function letterChecker(guess) {
             }
         }
         else {
+            for(let i = 0; i <wrongLetters.length; i++) {
+            if (guess == wrongLetters[i]) {
+                alert("Try not to pick the same letter twice! If I was mean game developer, I'd subtract a guess!")
+                return;
+            }
+        }
+        
             wrongLetters.push(guess);
             guessesRemain--;
 
-        }
+    }
         document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
         document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
         document.getElementById("directions-text").innerHTML = 'Good Luck!';
