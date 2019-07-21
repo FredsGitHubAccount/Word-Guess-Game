@@ -26,11 +26,10 @@ let wrongLetters = [];
 let wins = 0;
 let losses = 0;
 let guessesRemain = 10;
-
+var audio = new Audio('assets/music/mario.mp3');
 
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
-
 
 
     computerGuess = nintendoChars[Math.floor(Math.random() * nintendoChars.length)];
@@ -59,6 +58,8 @@ function newGame() {
 //    4. Verify if keystroke is part of the alphabet.  Checks to see if letter is part of the word.  If so, replace underscore with letter.  If not, adds to wrong guesses and subtracts a guess.
 
 function letterChecker(guess) {
+    audio.play()
+  
     if (event.keyCode >= 65 && event.keyCode <= 90) {
 
         let letterInWord = false;
@@ -162,3 +163,4 @@ document.onkeyup = function (event) {
     roundComplete();
 }
 freshStart();
+
