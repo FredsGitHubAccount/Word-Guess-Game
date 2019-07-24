@@ -26,7 +26,8 @@ let wrongLetters = [];
 let wins = 0;
 let losses = 0;
 let guessesRemain = 10;
-var audio = new Audio('assets/music/mario.mp3');
+
+    var audio = new Audio('Assets/music/mario.mp3');
 
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
