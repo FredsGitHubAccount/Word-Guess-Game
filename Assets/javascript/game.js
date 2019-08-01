@@ -27,7 +27,7 @@ let wins = 0;
 let losses = 0;
 let guessesRemain = 10;
 
-    var audio = new Audio('Assets/music/mario.mp3');
+var audio = new Audio('Assets/music/mario.mp3');
 
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
 function newGame() {
@@ -60,7 +60,7 @@ function newGame() {
 
 function letterChecker(guess) {
     audio.play()
-  
+
     if (event.keyCode >= 65 && event.keyCode <= 90) {
 
         let letterInWord = false;
@@ -85,17 +85,33 @@ function letterChecker(guess) {
             }
         }
         else {
-            for(let i = 0; i <wrongLetters.length; i++) {
-            if (guess == wrongLetters[i]) {
-                alert("Try not to pick the same letter twice! If I was mean game developer, I'd subtract a guess!")
-                return;
-            }
-        }
-        
-            wrongLetters.push(guess);
-            guessesRemain--;
 
-    }
+            if (wrongLetters.includes(guess)){
+                alert("You can't Do that ")
+
+
+            }
+
+            else {
+                wrongLetters.push(guess);
+                guessesRemain--;   
+            }
+            // console.log("Checking to see if for loop is running", wrongLetters.length)
+            // for (let i = 0; i < wrongLetters.length; i++) {
+            //     if (guess == wrongLetters[i]) {
+            //         console.log("Hi, checking if loop works")
+            //         alert("Try not to pick the same letter twice! If I was mean game developer, I'd subtract a guess!")
+            //         return;
+            //     }
+            //     else {
+            //         console.log("Hello from Nick & Else")
+            //         wrongLetters.push(guess);
+            //         guessesRemain--;
+            //     }
+            // }
+
+
+        }
         document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
         document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
         document.getElementById("directions-text").innerHTML = 'Good Luck!';
