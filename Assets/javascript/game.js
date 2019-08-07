@@ -12,8 +12,8 @@ let computerGuessLetters = [];
 // Total underscores that holds the current amount of blanks
 let totalBlanks = 0;
 
-// Store user guesses inside an array
-let userGuess = [];
+// Store user guesses inside an array to check for duplicate guesses
+let userGuessHolder = [];
 
 // Store the blanks & letters generated from random word chosen
 let displayBlanks = [];
@@ -22,11 +22,10 @@ let displayBlanks = [];
 let wrongLetters = [];
 
 
-// Scoring
+// Scoring & Music
 let wins = 0;
 let losses = 0;
 let guessesRemain = 10;
-
 var audio = new Audio('Assets/music/mario.mp3');
 
 //    2. The computer randomly picks a word from the list and breaks down the letters into an array
@@ -46,6 +45,7 @@ function newGame() {
     displayBlanks = [];
     wrongLetters = [];
     guessesRemain = 10;
+    userGuessHolder = []
 
     for (let i = 0; i < totalBlanks; i++) {
         (displayBlanks.push("_"));
@@ -60,6 +60,7 @@ function newGame() {
 
 function letterChecker(guess) {
     audio.play()
+
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
 
@@ -76,40 +77,36 @@ function letterChecker(guess) {
 
         if (letterInWord) {
 
+            if (userGuessHolder.includes(guess)) {
+                document.getElementById("alerts").innerHTML = "You've Already Picked That Letter!"
+
+            }
+
             for (let i = 0; i < totalBlanks; i++) {
 
                 if (computerGuess[i] === guess) {
                     displayBlanks[i] = guess;
+                    userGuessHolder.push(guess)
+                    document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
                 }
-                document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
+
             }
+
         }
+
+
+
         else {
 
-            if (wrongLetters.includes(guess)){
-                alert("You can't Do that ")
-
+            if (wrongLetters.includes(guess)) {
+                document.getElementById("alerts").innerHTML = "Don't Pick The Same Letter Twice! If I Was A Mean Game Developer, I'd Subtract A Guess!"
 
             }
 
             else {
                 wrongLetters.push(guess);
-                guessesRemain--;   
+                guessesRemain--;
             }
-            // console.log("Checking to see if for loop is running", wrongLetters.length)
-            // for (let i = 0; i < wrongLetters.length; i++) {
-            //     if (guess == wrongLetters[i]) {
-            //         console.log("Hi, checking if loop works")
-            //         alert("Try not to pick the same letter twice! If I was mean game developer, I'd subtract a guess!")
-            //         return;
-            //     }
-            //     else {
-            //         console.log("Hello from Nick & Else")
-            //         wrongLetters.push(guess);
-            //         guessesRemain--;
-            //     }
-            // }
-
 
         }
         document.getElementById("wrong-guess-text").innerHTML = `Wrong Guesses : ${wrongLetters.join(" , ")}`;
@@ -117,8 +114,9 @@ function letterChecker(guess) {
         document.getElementById("directions-text").innerHTML = 'Good Luck!';
     } else {
 
-        alert('You must type a valid character!')
+        document.getElementById("alerts").innerHTML = "Make Sure To Hit A Valid Key!"
     }
+
 };
 
 //    5. If user guesses all letters, a win is added, & randomly select another word. If 5 wins or 5 losses occurs, prompt the user to play again.  
@@ -130,6 +128,7 @@ function roundComplete() {
         document.getElementById(`wins-text`).innerHTML = `Wins : ${wins}`;
         document.getElementById(`wrong-guess-text`).innerHTML = `Wrong Guesses :`;
         newGame()
+
 
     }
 
@@ -163,6 +162,7 @@ function freshStart() {
     wins = 0;
     losses = 0;
     remainingGuesses = 10;
+    userGuessHolder = []
     document.getElementById("wins-text").innerHTML = `Wins : ${wins}`;
     document.getElementById("losses-text").innerHTML = `Losses : ${losses}`;
     document.getElementById("guesses-remaining").innerHTML = `Remaining Guesses : ${guessesRemain}`;
@@ -174,6 +174,7 @@ function freshStart() {
 // Calling Functions
 newGame();
 document.onkeyup = function (event) {
+    document.getElementById("alerts").innerHTML = ""
     userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     console.log(userGuess);
     letterChecker(userGuess);

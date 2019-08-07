@@ -23,8 +23,9 @@ body {
     font-size: 48px;
 }
 
-#wrong-guess-text {
+#wrong-guess-text, #alerts {
     color: crimson;
+    font-size: 30px;
 }
 
 
