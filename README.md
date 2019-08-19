@@ -4,7 +4,7 @@
 
 ## Objective 
 
-Create a Hangman game using HTML, CSS, & Javascript with a theme of your choice.  
+Create a Hangman game using HTML, CSS, & Javascript that is Nintendo themed.
 
 ## Live link
 Open the live link at https://fredsgithubaccount.github.io/Word-Guess-Game/ 
