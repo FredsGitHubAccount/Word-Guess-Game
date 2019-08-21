@@ -131,6 +131,7 @@ function letterChecker(guess) {
 function roundComplete() {
 
     if (computerGuessLetters == displayBlanks.toString()) {
+        
         wins++;
         alert(`You Win! The Word Was ${computerGuess}!`);
         document.getElementById(`wins-text`).innerHTML = `Wins : ${wins}`;
