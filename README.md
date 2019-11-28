@@ -11,7 +11,8 @@ Open the live link at https://fredsgithubaccount.github.io/Word-Guess-Game/
 
 ## Screenshot
 
-("/Assets/images/mariohang.png")
+!("/Assets/images/mariohang.png")
+
 
 ## Technologies
 Front-End
