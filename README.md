@@ -11,7 +11,7 @@ Open the live link at https://fredsgithubaccount.github.io/Word-Guess-Game/
 
 ## Screenshot
 
-!(screenshot.png)
+![Screenshot](screenshot.png)
 
 
 ## Technologies
