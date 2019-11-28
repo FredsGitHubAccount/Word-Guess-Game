@@ -9,6 +9,10 @@ Create a Hangman game using HTML, CSS, & Javascript that is Nintendo themed.
 ## Live link
 Open the live link at https://fredsgithubaccount.github.io/Word-Guess-Game/ 
 
+## Screenshot
+
+("/Assets/images/mariohang.png")
+
 ## Technologies
 Front-End
 - [ ] HTML

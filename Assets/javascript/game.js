@@ -93,6 +93,7 @@ function letterChecker(guess) {
                     displayBlanks[i] = guess;
                     userGuessHolder.push(guess)
                     document.getElementById("generate-underscore").innerHTML = displayBlanks.join(" ");
+                    
                 }
 
             }
@@ -186,7 +187,7 @@ newGame();
 document.onkeyup = function (event) {
     document.getElementById("alerts").innerHTML = ""
     userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(userGuess);
+    console.log(displayBlanks);
     letterChecker(userGuess);
     roundComplete();
 }
